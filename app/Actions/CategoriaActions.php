@@ -20,6 +20,8 @@ class CategoriaActions {
             $query->where('id', $params['id']);
         }
 
+        
+
         return $getCollection ? $query->get() : $query->first();
 
     }
@@ -42,10 +44,14 @@ class CategoriaActions {
         if($categoria == null) { return null;}
 
         $categoria->nombre = $nombre;
-        if($place != null){ $categoria->place = $place; }
         $categoria->descripcion = $descripcion;
 
         $categoria->save();
+
+        // if place is modified then reorder..
+        if($place != null && $place != $categoria->place){ 
+            $categoria->reorder($place);
+         }
 
         return $categoria;
     }

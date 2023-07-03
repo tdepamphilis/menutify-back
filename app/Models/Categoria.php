@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Traits\Ordenable;
+
 class Categoria extends Model
 {
-    use HasFactory;
+    use HasFactory, Ordenable;
 
     public function items(){
         return $this->hasMany(Item::class);
     }
 
     // static methods 
-    public static function getLastPlace(){
-        return Self::orderBy('place', 'desc')->value('place');
-    }
+    
 }
