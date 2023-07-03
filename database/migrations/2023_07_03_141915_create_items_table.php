@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('nombre', 255);
             $table->string('descripcion', 255)->nullable()->default(null);
             $table->float('precio', 6, 2, true);
+            $table->string('image_path', 255)->nullable()->default(null);
             $table->unsignedInteger('place');
             $table->timestamps();
         });

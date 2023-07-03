@@ -12,4 +12,9 @@ class Categoria extends Model
     public function items(){
         return $this->hasMany(Item::class);
     }
+
+    // static methods 
+    public static function getLastPlace(){
+        return Self::orderBy('place', 'desc')->value('place');
+    }
 }
