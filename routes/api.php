@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Crud\CategoriaController;
+use App\Http\Controllers\Crud\ItemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     Route::post('categorias/store', [CategoriaController::class, 'store']);
     Route::post('categorias/update', [CategoriaController::class, 'update']);
     Route::post('categorias/destroy', [CategoriaController::class, 'destroy']);
+
+    // Item..
+    Route::post('items/index', [ItemController::class, 'index']);
+    Route::post('items/store', [ItemController::class, 'store']);
+    Route::post('items/update', [ItemController::class, 'update']);
+    Route::post('items/destroy', [ItemController::class, 'destroy']);

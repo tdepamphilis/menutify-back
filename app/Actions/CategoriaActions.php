@@ -27,9 +27,10 @@ class CategoriaActions {
     }
 
     static function store(string $nombre, int|null $place = 0, string|null $descripcion = null):Categoria{
-        $lastPlace = Categoria::getLastPlace();
-
+        
         $categoria = new Categoria();
+
+        $lastPlace = $categoria->getLastPlace();
 
         $categoria->nombre = $nombre;
         $categoria->place = $lastPlace != null ? $lastPlace + 1 : 1;
