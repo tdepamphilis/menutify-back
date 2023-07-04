@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('image_path', 255)->nullable()->default(null);
             $table->unsignedInteger('place');
             $table->timestamps();
+            $table->foreign('categoria_id')->references('id')->on('categorias');
         });
     }
 
