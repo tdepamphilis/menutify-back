@@ -83,6 +83,10 @@ class ItemActions {
 
     public static function destroy(int $id){
         $item = Item::where('id', $id)->first();
+        
+        // call freeUpSpace outside deleting event habdler to avoid updating unnesesary table rows.
+        $item->freeUpPlace();
+
         $item->delete();
 
         return null;
