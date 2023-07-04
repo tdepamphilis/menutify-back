@@ -7,11 +7,19 @@ use Illuminate\Support\Facades\Log;
 
 trait Ordenable {
 
+    private function getGroupBy(){
+        return isset($this->groupByColumn) ? $this->groupByColumn : null;
+    }
+
     public function reorder(int $place){
 
         $class = $this::class;
 
-        $models = $class::where('id', '!=' , $this->id)->where('place', '>=', $place)->where('place', '<', $this->place)->get();
+        if($this->getGroupBy() == null){
+            $models = $class::where('id', '!=' , $this->id)->where('place', '>=', $place)->where('place', '<', $this->place)->get();
+        } else {
+            $models = $class::where('id', '!=' , $this->id)->where('place', '>=', $place)->where('place', '<', $this->place)->where($this->getGroupBy(), $this[$this->getGroupBy()])->get();
+        }
 
         foreach ($models as $key => $model) {
             Log::debug('entra al foreach con id ' . $model->id);
@@ -23,8 +31,14 @@ trait Ordenable {
         $this->save();
     }
 
-    public static function getLastPlace(){
-        return Self::orderBy('place', 'desc')->value('place');
+    public function getLastPlace(){
+        
+        if($this->getGroupBy() == null){
+            return Self::orderBy('place', 'desc')->value('place');
+        } else {
+            return Self::where($this->getGroupBy(), $this[$this->getGroupBy()])->orderBy('place', 'desc')->value('place');
+        }
+
     }
 
 }
