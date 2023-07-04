@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use Exception;
 use Illuminate\Support\Facades\Log;
 
 
@@ -37,6 +38,26 @@ trait Ordenable {
             return Self::orderBy('place', 'desc')->value('place');
         } else {
             return Self::where($this->getGroupBy(), $this[$this->getGroupBy()])->orderBy('place', 'desc')->value('place');
+        }
+
+    }
+
+
+    public function freeUpPlace(){
+
+        $class = $this::class;
+        
+
+        if($this->getGroupBy() == null){
+            $models = $class::where('id', '!=' , $this->id)->where('place', '>', $this->place)->get();
+        } else {
+            $models = $class::where('id', '!=' , $this->id)->where('place', '>', $this->place)->where($this->getGroupBy(), $this[$this->getGroupBy()])->get();
+        }
+
+        foreach ($models as $key => $model) {
+            Log::debug('entra al foreach con id ' . $model->id);
+            $model->place = $model->place - 1;
+            $model->save();
         }
 
     }
