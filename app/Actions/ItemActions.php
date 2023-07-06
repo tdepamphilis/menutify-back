@@ -6,10 +6,11 @@ use App\Models\Item;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use App\Actions\CaracteristicaActions;
 
 class ItemActions {
     
-    static function get(array $params = []):Collection|Item|null{
+    static function get(array $params = [], $eagerLoad = []):Collection|Item|null{
 
         $getCollection = isset($params['collection']) ? $params['collection'] : false;
 
@@ -23,10 +24,14 @@ class ItemActions {
             $query->where('categoria_id', $params['categoriaId']);
         }
 
+        foreach ($eagerLoad as $key => $e) {
+            $query->with($e);
+        }
+
         return $getCollection ? $query->get() : $query->first();
     }
 
-    static function store(string $nombre, string $descripcion, float $precio, $image, int $categoriaId):Item{
+    static function store(string $nombre, string $descripcion, float $precio, $image, int $categoriaId, array $caracteristicasIds = []):Item{
 
         $item = new Item();
         $item->categoria_id = $categoriaId;
@@ -40,15 +45,17 @@ class ItemActions {
 
         $item->save();
 
+        CaracteristicaActions::addToItem($item, $caracteristicasIds);
+        
         $imageName = $item->id . '.' . $image->getClientOriginalExtension();
         Storage::disk('public')->put('images/' . $imageName, file_get_contents($image));
 
         return $item;
     }
 
-    static function update(int $id, string $nombre, string $descripcion, float $precio, $image, int $categoriaId, int|null $place):Item|null{
+    static function update(int $id, string $nombre, string $descripcion, float $precio, $image, int $categoriaId, int|null $place, array $caracteristicasIds = []):Item|null{
 
-        $item = Item::where('id', $id)->first();
+        $item = Item::where('id', $id)->with('caracteristicas')->first();
         if($item == null) { return null;}
 
         $item->nombre = $nombre;
@@ -72,11 +79,20 @@ class ItemActions {
             $item->reorder($place);
         }
 
+        // Check for changes in caracteristicas and set accordingly.. 
+        CaracteristicaActions::updateOnItem($item, $caracteristicasIds);
+        
+        // $item->caracteristicas()->attach([1]);
+
         // if image != null then replace..
         if($image != null){
             $imageName = $item->id . '.' . $image->getClientOriginalExtension();
             Storage::disk('public')->put('images/' . $imageName, file_get_contents($image));
         }
+
+        
+        // the instance of $item wont update its relationships until retrieved again..
+        $item = Self::get(['id' => $item->id], ['caracteristicas']);
 
         return $item;
     }

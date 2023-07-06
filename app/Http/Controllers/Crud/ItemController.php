@@ -27,10 +27,10 @@ class ItemController extends Controller
     }
     
     public function store(StoreItemRequest $req){   
-        return ItemService::store($req->categoriaId, $req->nombre, $req->descripcion, $req->precio, $req->image);
+        return ItemService::store($req->categoriaId, $req->nombre, $req->descripcion, $req->precio, $req->image, $req->getCaracteristicasId());
     }
     public function update(UpdateItemRequest $req){
-        return ItemService::update($req->id, $req->categoriaId, $req->nombre, $req->descripcion, $req->precio, $req->image, $req->place);
+        return ItemService::update($req->id, $req->categoriaId, $req->nombre, $req->descripcion, $req->precio, $req->image, $req->place, $req->getCaracteristicasId()); 
     }   
 
     public function destroy(DestroyItemRequest $req){

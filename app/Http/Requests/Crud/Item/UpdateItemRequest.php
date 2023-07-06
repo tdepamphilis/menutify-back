@@ -28,7 +28,20 @@ class UpdateItemRequest extends FormRequest
             'descripcion' => 'string',
             'precio' => 'numeric|required',
             'image' => 'file|image',
-            'place' => 'integer'
+            'place' => 'integer',
+            'caracteristicasIds'  => 'array',
+            'caracteristicasIds.*' => 'integer|distinct'
         ];
+    }
+
+    public function getCaracteristicasId(){
+        return isset($this->caracteristicasIds) ? $this->caracteristicasIds : [];
+    }
+
+    protected function prepareForValidation()
+    {
+        // parse the $payload key to validate as json.
+        $decoded = json_decode($this->payload, true, 512, JSON_THROW_ON_ERROR);
+        $this->merge($decoded);
     }
 }

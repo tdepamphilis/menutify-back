@@ -3,6 +3,8 @@
 namespace App\Http\Requests\Crud\Item;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Log;
+use App\Handlers\ArrayHandler;
 
 class StoreItemRequest extends FormRequest
 {
@@ -27,8 +29,21 @@ class StoreItemRequest extends FormRequest
             'nombre' => 'string|required',
             'descripcion' => 'string',
             'precio' => 'numeric|required',
-            'image' => 'file|image|required',
-            'categoriaId' => 'integer|required'
+            'image' => 'file|image',
+            'categoriaId' => 'integer|required',
+            'caracteristicasIds' => 'array',
+            'caracteristicasIds.*' => 'integer|distinct'
         ];
+    }
+
+    public function getCaracteristicasId(){
+        return isset($this->caracteristicasIds) ? $this->caracteristicasIds : [];
+    }
+
+    protected function prepareForValidation()
+    {
+        // parse the $payload key to validate as json.
+        $decoded = json_decode($this->payload, true, 512, JSON_THROW_ON_ERROR);
+        $this->merge($decoded);
     }
 }
