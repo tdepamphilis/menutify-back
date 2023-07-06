@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Crud\Categoria;
+namespace App\Http\Requests\Menu\Categoria;
 
 use Illuminate\Foundation\Http\FormRequest;
 

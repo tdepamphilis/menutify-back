@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Crud\Categoria;
+namespace App\Http\Requests\Menu\Categoria;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DestroyCategoriaRequest extends FormRequest
+class StoreCategoriaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,9 @@ class DestroyCategoriaRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'integer|required'
+            'nombre' => 'string|required',
+            'descripcion' => 'string',
+            'place' => 'integer',
         ];
     }
 }

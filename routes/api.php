@@ -3,8 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\Crud\CategoriaController;
-use App\Http\Controllers\Crud\ItemController;
+use App\Http\Controllers\Menu\CategoriaController;
+use App\Http\Controllers\Menu\ItemController;
 
 /*
 |--------------------------------------------------------------------------

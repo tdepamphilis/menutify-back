@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Crud\Categoria;
+namespace App\Http\Requests\Menu\Item;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class IndexCategoriaRequest extends FormRequest
+class IndexItemRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class IndexCategoriaRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'integer'
+            //
         ];
     }
 }

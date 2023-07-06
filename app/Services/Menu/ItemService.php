@@ -1,8 +1,9 @@
 <?php
-namespace App\Services;
+namespace App\Services\Menu;
+
 use Illuminate\Http\JsonResponse;
 use App\Handlers\ResponseHandler;
-use App\Actions\ItemActions;
+use App\Actions\Menu\ItemActions;
 
 class ItemService {
 

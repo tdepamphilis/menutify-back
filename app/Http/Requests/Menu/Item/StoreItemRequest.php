@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Crud\Item;
+namespace App\Http\Requests\Menu\Item;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Log;

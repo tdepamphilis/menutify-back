@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Menu;
 
-use App\Actions\CategoriaActions;
+use App\Actions\Menu\CategoriaActions;
 use Illuminate\Http\JsonResponse;
 use App\Handlers\ResponseHandler;
 

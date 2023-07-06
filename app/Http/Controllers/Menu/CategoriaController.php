@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Crud;
+namespace App\Http\Controllers\Menu;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Crud\Categoria\DestroyCategoriaRequest;
 use App\Http\Requests\Crud\Categoria\IndexCategoriaRequest;
 use App\Http\Requests\Crud\Categoria\StoreCategoriaRequest;
 use App\Http\Requests\Crud\Categoria\UpdateCategoriaRequest;
-use App\Services\CategoriaService;
+use App\Services\Menu\CategoriaService;
 
 use Illuminate\Support\Facades\Log;
 

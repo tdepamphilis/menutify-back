@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Actions;
+namespace App\Actions\Menu;
 
 use App\Models\Item;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
-use App\Actions\CaracteristicaActions;
+use App\Actions\Menu\CaracteristicaActions;
 
 class ItemActions {
     

@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Crud;
+namespace App\Http\Controllers\Menu;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Crud\Item\DestroyItemRequest;
 use App\Http\Requests\Crud\Item\IndexItemRequest;
 use App\Http\Requests\Crud\Item\StoreItemRequest;
 use App\Http\Requests\Crud\Item\UpdateItemRequest;
-use App\Actions\ItemActions;
-use App\Services\ItemService;
+use App\Services\Menu\ItemService;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Log;
