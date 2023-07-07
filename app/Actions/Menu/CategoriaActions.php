@@ -2,7 +2,7 @@
 
 namespace App\Actions\Menu;
 
-use App\Models\Categoria;
+use App\Models\Menu\Categoria;
 use Illuminate\Database\Eloquent\Collection;
 
 use Illuminate\Support\Facades\Log;

@@ -2,7 +2,7 @@
 
 namespace App\Actions\Menu;
 
-use App\Models\Item;
+use App\Models\Menu\Item;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;

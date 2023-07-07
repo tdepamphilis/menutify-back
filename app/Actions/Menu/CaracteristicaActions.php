@@ -2,8 +2,8 @@
 
 namespace App\Actions\Menu;
 
-use App\Models\Caracteristica;
-use App\Models\Item;
+use App\Models\Menu\Caracteristica;
+use App\Models\Menu\Item;
 
 use Illuminate\Support\Facades\Log;
 

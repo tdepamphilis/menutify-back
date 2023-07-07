@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Menu;
 
 use App\Events\CategoriaDeleted;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
