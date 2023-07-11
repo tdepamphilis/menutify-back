@@ -13,4 +13,10 @@ class ResponseHandler {
         return response()->json(array_merge($responseData, $data));
     }
 
+    public static function response401(array $data = []):JsonResponse{
+        $responseData = ['status' => 'Unauthorized'];
+
+        return response()->json(array_merge($responseData, $data), 401);
+    }
+
 }

@@ -27,9 +27,13 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
         
-        //
-        Passport::hashClientSecrets();
+        //Passport::hashClientSecrets();
 
-        
+        Passport::tokensCan([
+            'payment' => 'Access all endpoints',
+            'menu_view' => 'View Menu per client',
+            'menu_crud' => 'Crud Menu'
+        ]);
+
     }
 }
