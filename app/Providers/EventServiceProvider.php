@@ -9,9 +9,17 @@ use Illuminate\Support\Facades\Event;
 
 use App\Events\CategoriaDeleted;
 use App\Events\ItemDeleted;
+use App\Events\MenuDeleted;
+use App\Events\RestaurantDeleted;
+
 
 use App\Listeners\HandleCategoriaDeleted;
 use App\Listeners\HandleItemDeleted;
+use App\Listeners\HandleMenuDeleted;
+use App\Listeners\HandleRestaurantDeleted;
+
+
+
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -29,8 +37,14 @@ class EventServiceProvider extends ServiceProvider
         ],
         ItemDeleted::class => [
             HandleItemDeleted::class,
+        ],
+        MenuDeleted::class => [
+            HandleMenuDeleted::class
+        ],
+        RestaurantDeleted::class => [
+            HandleRestaurantDeleted::class
         ]
-        
+
     ];
 
     /**

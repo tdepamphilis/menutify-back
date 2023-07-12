@@ -13,16 +13,21 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('categorias', function (Blueprint $table) {
+        Schema::create('contactos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('menu_id');
-            $table->string('nombre', 255);
-            $table->string('descripcion', 255)->nullable()->default(null);
-            $table->unsignedInteger('place');
-            $table->foreign('menu_id')->references('id')->on('menus');
+            $table->unsignedBigInteger('provincia_id');
+            $table->string('domicilio', 255);
+            $table->string('localidad', 255);
+            $table->string('telefono', 255);
+            $table->string('email', 255);
+            $table->foreign('provincia_id')->references('id')->on('provincias');
             $table->timestamps();
         });
     }
+
+
+
+    
 
     /**
      * Reverse the migrations.
@@ -31,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categorias');
+        Schema::dropIfExists('contactos');
     }
 };

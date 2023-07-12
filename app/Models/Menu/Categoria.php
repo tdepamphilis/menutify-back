@@ -20,6 +20,10 @@ class Categoria extends Model
         return $this->hasMany(Item::class);
     }
 
+    public function menu(){
+        return $this->belongsTo(Menu::class);
+    }
+
     // static methods 
     
 }

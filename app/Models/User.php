@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Contacto\Contacto;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -42,4 +43,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // relationships
+
+    public function restaurants(){
+        return $this->hasMany(Restaurant::class);
+    }
+
+    public function contacto(){
+        return $this->belongsTo(Contacto::class);
+    }
+
+
 }

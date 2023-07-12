@@ -2,6 +2,7 @@
 
 namespace App\Actions\User;
 
+use App\Models\Contacto\Contacto;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Auth;
@@ -42,6 +43,15 @@ class UserActions {
     public static function destroy(int $id){
         $user = User::where('id', $id)->first();
         $user->delete();
+    }
+
+    // Contacto..
+
+    public function setContacto(int $id, int $contactoId):User{
+        $user = User::where('id', $id)->first();
+        $user->contacto_id = $contactoId;
+        $user->save();
+        return $user;
     }
 
     // Auth..
